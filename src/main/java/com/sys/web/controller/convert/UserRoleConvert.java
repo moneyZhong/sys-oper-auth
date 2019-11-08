@@ -1,8 +1,7 @@
-package com.sys.web.convert;
+package com.sys.web.controller.convert;
 
-
+import com.sys.web.controller.vo.UserRoleVO;
 import com.sys.entity.UserRoleDO;
-import com.sys.web.vo.UserRoleVO;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sys.web.vo;
+package com.sys.web.controller.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -18,39 +18,26 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 
 @ApiModel("")
-public class RoleVO implements Serializable {
+public class UserRoleVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
 
-    /**
-     * 角色名
-     */
-    @ApiModelProperty(value = "角色名")
-    private String name;
+
+    private Long userId;
 
 
-    /**
-     * 角色描述
-     */
-    @ApiModelProperty(value = "角色描述")
-    private String description;
 
-
-    /**
-     * 是否有效 0 无效 1 有效
-     */
-    @ApiModelProperty(value = "是否有效 0 无效 1 有效")
-    private Boolean available;
+    private Long roleId;
 
 
     /**

@@ -1,4 +1,4 @@
-package com.sys.web.convert;
+package com.sys.web.controller.convert;
 
 import com.sys.web.controller.vo.RoleResourcesVO;
 import com.sys.entity.RoleResourcesDO;

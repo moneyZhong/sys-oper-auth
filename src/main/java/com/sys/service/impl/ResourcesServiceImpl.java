@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Service
 public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, ResourcesDO> implements ResourcesService {

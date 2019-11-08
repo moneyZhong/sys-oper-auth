@@ -1,4 +1,4 @@
-package com.sys.web.vo;
+package com.sys.web.controller.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

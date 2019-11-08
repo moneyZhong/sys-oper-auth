@@ -1,8 +1,6 @@
 package com.sys.web.controller;
 
 
-import com.sys.web.convert.ResourcesConvert;
-import com.sys.web.vo.ResourcesVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.java.Log;
 import com.sys.comm.response.CommonReturnType;
-
+import com.sys.web.controller.convert.*;
+import com.sys.web.controller.vo.*;
 import com.sys.entity.*;
 import com.sys.service.*;
 import java.util.*;
@@ -30,7 +29,7 @@ resourcesDO
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Log
 @Api(value = "", description="")
@@ -49,7 +48,7 @@ public class ResourcesController  extends BaseController{
     public CommonReturnType<Object> add(@RequestBody ResourcesVO inputVO) {
         CommonReturnType<Object> ret = null;
 
-        this.resourcesService.saveOrUpdate(inputVO);
+        this.resourcesService.saveOrUpdate(ResourcesConvert.toResourcesDO(inputVO));
 
         ret = CommonReturnType.createSuccess(null);
         return ret;
@@ -59,7 +58,7 @@ public class ResourcesController  extends BaseController{
     /**
      * 详情
      */
-/*
+
     @ApiOperation(value = "详情", httpMethod = "POST")
     @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
     @PostMapping(value="/view/{id}")
@@ -72,38 +71,21 @@ public class ResourcesController  extends BaseController{
         ret = CommonReturnType.createSuccess(voObj);
 
         return ret;
-    }*/
-
-    /**
-     * 分页列表
-     */
-    /*
-    @ApiOperation(value = "分页列表", httpMethod = "POST")
-    @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
-    @PostMapping(value="/list")
-    public CommonReturnType<ResourcesVO> list(@RequestBody ResourcesVO inputVO) {
-        CommonReturnType<ResourcesVO> ret = null;
-        final ResourcesVO demoVO = new ResourcesVO();
-        ret = CommonReturnType.createSuccess(demoVO);
-        return ret;
-    }*/
-
-
-    /**
-     * 查询列表
-     */
-    @ApiOperation(value = "查询列表", httpMethod = "POST")
-    @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
-    @PostMapping(value="/list")
-    public CommonReturnType<List<ResourcesVO>> list(@RequestBody RecordReqVO inputVO) {
-        CommonReturnType<List<ResourcesVO>> ret = null;
-
-        final List<ResourcesDO> doList = this.resourcesService.list();
-        List<ResourcesVO> list = ResourcesConvert.from(doList);
-
-        ret = CommonReturnType.createSuccess(list);
-
-        return ret;
     }
+
+        /**
+        * 分页列表
+        */
+ /*       @ApiOperation(value = "分页列表", httpMethod = "POST")
+        @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
+        @PostMapping(value="/list")
+        public CommonReturnType<TableDataInfo<ResourcesVO>> list(@RequestBody PageReq<ResourcesVO> inputVO) {
+            TableDataInfo<ResourcesVO> tableDataInfo = this.resourcesService.selectPage(inputVO.getData());
+            ret = CommonReturnType.createSuccess(demoVO);
+            return ret;
+        }
+*/
+
+
 
 }

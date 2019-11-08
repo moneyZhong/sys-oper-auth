@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.java.Log;
 import com.sys.comm.response.CommonReturnType;
-import com.sys.controller.convert.*;
-import com.sys.controller.vo.*;
+import com.sys.web.controller.convert.*;
+import com.sys.web.controller.vo.*;
 import com.sys.entity.*;
 import com.sys.service.*;
 import java.util.*;
@@ -29,7 +29,7 @@ userRoleDO
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Log
 @Api(value = "", description="")
@@ -48,7 +48,7 @@ public class UserRoleController  extends BaseController{
     public CommonReturnType<Object> add(@RequestBody UserRoleVO inputVO) {
         CommonReturnType<Object> ret = null;
 
-        this.userRoleService.saveOrUpdate(inputVO);
+        this.userRoleService.saveOrUpdate(UserRoleConvert.toUserRoleDO(inputVO));
 
         ret = CommonReturnType.createSuccess(null);
         return ret;
@@ -58,7 +58,7 @@ public class UserRoleController  extends BaseController{
     /**
      * 详情
      */
-/*
+
     @ApiOperation(value = "详情", httpMethod = "POST")
     @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
     @PostMapping(value="/view/{id}")
@@ -71,38 +71,21 @@ public class UserRoleController  extends BaseController{
         ret = CommonReturnType.createSuccess(voObj);
 
         return ret;
-    }*/
-
-    /**
-     * 分页列表
-     */
-    /*
-    @ApiOperation(value = "分页列表", httpMethod = "POST")
-    @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
-    @PostMapping(value="/list")
-    public CommonReturnType<UserRoleVO> list(@RequestBody UserRoleVO inputVO) {
-        CommonReturnType<UserRoleVO> ret = null;
-        final UserRoleVO demoVO = new UserRoleVO();
-        ret = CommonReturnType.createSuccess(demoVO);
-        return ret;
-    }*/
-
-
-    /**
-     * 查询列表
-     */
-    @ApiOperation(value = "查询列表", httpMethod = "POST")
-    @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
-    @PostMapping(value="/list")
-    public CommonReturnType<List<UserRoleVO>> list(@RequestBody RecordReqVO inputVO) {
-        CommonReturnType<List<UserRoleVO>> ret = null;
-
-        final List<UserRoleDO> doList = this.userRoleService.list();
-        List<UserRoleVO> list = UserRoleConvert.from(doList);
-
-        ret = CommonReturnType.createSuccess(list);
-
-        return ret;
     }
+
+        /**
+        * 分页列表
+        */
+ /*       @ApiOperation(value = "分页列表", httpMethod = "POST")
+        @ApiResponse(code = 200, message = "success", response = CommonReturnType.class)
+        @PostMapping(value="/list")
+        public CommonReturnType<TableDataInfo<UserRoleVO>> list(@RequestBody PageReq<UserRoleVO> inputVO) {
+            TableDataInfo<UserRoleVO> tableDataInfo = this.userRoleService.selectPage(inputVO.getData());
+            ret = CommonReturnType.createSuccess(demoVO);
+            return ret;
+        }
+*/
+
+
 
 }

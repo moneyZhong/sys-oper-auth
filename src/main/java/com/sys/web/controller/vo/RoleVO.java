@@ -1,4 +1,4 @@
-package com.sys.web.vo;
+package com.sys.web.controller.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -18,64 +18,32 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zhongqian
- * @since 2019-11-07
+ * @since 2019-11-08
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 
 @ApiModel("")
-public class ResourcesVO implements Serializable {
+public class RoleVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
 
-
+    /**
+     * 角色名
+     */
+    @ApiModelProperty(value = "角色名")
     private String name;
 
 
     /**
-     * menu 菜单 button 按钮
+     * 角色描述
      */
-    @ApiModelProperty(value = "menu 菜单 button 按钮")
-    private String type;
-
-
-    /**
-     * 菜单地址
-     */
-    @ApiModelProperty(value = "菜单地址")
-    private String url;
-
-
-    /**
-     * 资源名称
-     */
-    @ApiModelProperty(value = "资源名称")
-    private String permission;
-
-
-    /**
-     * 父节点
-     */
-    @ApiModelProperty(value = "父节点")
-    private Long parentId;
-
-
-    /**
-     * 用户排序
-     */
-    @ApiModelProperty(value = "用户排序")
-    private Integer sort;
-
-
-    /**
-     * 是否外部链接
-     */
-    @ApiModelProperty(value = "是否外部链接")
-    private Boolean external;
+    @ApiModelProperty(value = "角色描述")
+    private String description;
 
 
     /**
@@ -83,13 +51,6 @@ public class ResourcesVO implements Serializable {
      */
     @ApiModelProperty(value = "是否有效 0 无效 1 有效")
     private Boolean available;
-
-
-    /**
-     * 菜单图标
-     */
-    @ApiModelProperty(value = "菜单图标")
-    private String icon;
 
 
     /**

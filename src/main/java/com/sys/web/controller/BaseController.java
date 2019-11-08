@@ -9,7 +9,6 @@ import com.sys.exception.BusinessException;
 import com.sys.exception.UserNotFoundException;
 import com.sys.service.IMessageService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -55,7 +54,7 @@ public class BaseController {
 	    	BindingResult bindResult= argumentValidException.getBindingResult();
 	    	String message= bindResult.getFieldError().getDefaultMessage();
 	    	log.info(message);
-	    	code=CommonError._100002_PARAMETER_VALIDATION_ERROR.getErrCode();
+	    	code= CommonError._100002_PARAMETER_VALIDATION_ERROR.getErrCode();
 	    	msg=message;
         	 
         }else{
@@ -66,10 +65,6 @@ public class BaseController {
     }
 
 
-    @ExceptionHandler(value = {AuthorizationException.class})
-    public CommonReturnType authorizationException(AuthorizationException ex, WebRequest request) {
-        return CommonReturnType.createFail(-1,"无权限访问");
-    }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public CommonReturnType formException(MethodArgumentNotValidException ex, WebRequest request) {
