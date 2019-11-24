@@ -3,9 +3,14 @@ package com.sys.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
+
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -75,6 +80,13 @@ public class ResourcesDO implements Serializable {
     @TableField("update_time")
     private LocalDateTime updateTime;
 
+
+    @Transient
+    private String checked;
+    @Transient
+    private ResourcesDO parent;
+    @Transient
+    private List<ResourcesDO> nodes;
 
     public static final String ID = "id";
 
