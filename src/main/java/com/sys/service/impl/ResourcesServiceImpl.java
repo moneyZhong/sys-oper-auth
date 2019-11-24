@@ -196,81 +196,9 @@ public class ResourcesServiceImpl extends ServiceImpl<ResourcesMapper, Resources
       return   resourceMapper.deleteById(primaryKey) > 0;
     }
 
-    /**
-     * 根据主键更新实体全部字段，null值会被更新
-     *
-     * @param entity
-     * @return
-     */
-    @Override
-    public boolean update(Resources entity) {
-        Assert.notNull(entity, "Resources不可为空！");
-        entity.setUpdateTime(LocalDateTime.now());
-        return resourceMapper.updateById(entity.getSysResources()) > 0;
-    }
 
-    /**
-     * 根据主键更新属性不为null的值
-     *
-     * @param entity
-     * @return
-     */
-    @Override
-    public boolean updateSelective(Resources entity) {
-        Assert.notNull(entity, "Resources不可为空！");
-        entity.setUpdateTime(new Date());
-        return resourceMapper.updateByPrimaryKeySelective(entity.getSysResources()) > 0;
-    }
 
-    /**
-     * 根据主键字段进行查询，方法参数必须包含完整的主键属性，查询条件使用等号
-     *
-     * @param primaryKey
-     * @return
-     */
-    @Override
-    public Resources getByPrimaryKey(Long primaryKey) {
-        Assert.notNull(primaryKey, "PrimaryKey不可为空！");
-        SysResources sysResources = resourceMapper.selectByPrimaryKey(primaryKey);
-        return null == sysResources ? null : new Resources(sysResources);
-    }
 
-    /**
-     * 根据实体中的属性进行查询，只能有一个返回值，有多个结果时抛出异常，查询条件使用等号
-     *
-     * @param entity
-     * @return
-     */
-    @Override
-    public Resources getOneByEntity(Resources entity) {
-        Assert.notNull(entity, "User不可为空！");
-        SysResources sysResources = resourceMapper.selectOne(entity.getSysResources());
-        return null == sysResources ? null : new Resources(sysResources);
-    }
-
-    /**
-     * 查询全部结果，listByEntity(null)方法能达到同样的效果
-     *
-     * @return
-     */
-    @Override
-    public List<Resources> listAll() {
-        List<ResourcesDO> sysResources = resourceMapper.selectAll();
-        return getResources(sysResources);
-    }
-
-    /**
-     * 根据实体中的属性值进行查询，查询条件使用等号
-     *
-     * @param entity
-     * @return
-     */
-    @Override
-    public List<Resources> listByEntity(Resources entity) {
-        Assert.notNull(entity, "Resources不可为空！");
-        List<ResourcesDO> sysResources = resourceMapper.select(entity.getSysResources());
-        return getResources(sysResources);
-    }
 
     private List<Resources> getResources(List<ResourcesDO> sysResources) {
         if (CollectionUtils.isEmpty(sysResources)) {

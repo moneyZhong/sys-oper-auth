@@ -55,7 +55,6 @@ public interface ResourcesService extends IService<ResourcesDO> {
 
     public boolean removeByPrimaryKey(Long primaryKey);
 
-    public boolean update(Resources entity);
 
     /**
      * 获取所有可用的菜单资源

@@ -4,6 +4,7 @@ import com.sys.entity.ResourcesDO;
 import com.sys.service.ResourcesService;
 import com.sys.service.ShiroService;
 import com.sys.service.UserService;
+import com.sys.web.controller.vo.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.RealmSecurityManager;
@@ -51,7 +52,7 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/assets/**", "anon");
         // 加载数据库中配置的资源权限列表
-        List<ResourcesDO> resourcesList = resourcesService.listUrlAndPermission();
+        List<Resources> resourcesList = resourcesService.listUrlAndPermission();
         for (Resources resources : resourcesList) {
             if (!StringUtils.isEmpty(resources.getUrl()) && !StringUtils.isEmpty(resources.getPermission())) {
                 String permission = "perms[" + resources.getPermission() + "]";
