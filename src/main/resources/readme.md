@@ -5,6 +5,16 @@ shiro主要有三大功能模块：
 
 
 shiro 接入
+1. 添加maven 配置
+ <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+ </dependency>
+
+2. springboot中集成shiro相对简单，只需要两个类：一个是shiroConfig类，一个是MyRealm类
+
+
 
 
 
